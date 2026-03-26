@@ -1,0 +1,20 @@
+[2026-03-26T16:56:16.383+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-26T16:56:16.392+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.load_branch.transfer_predictions_to_postgres manual__2026-03-26T16:56:04.918585+00:00 [queued]>
+[2026-03-26T16:56:16.396+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.load_branch.transfer_predictions_to_postgres manual__2026-03-26T16:56:04.918585+00:00 [queued]>
+[2026-03-26T16:56:16.396+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2026-03-26T16:56:16.402+0000] {taskinstance.py:2889} INFO - Executing <Task(S3ToPostgresOperator): load_branch.transfer_predictions_to_postgres> on 2026-03-26 16:56:04.918585+00:00
+[2026-03-26T16:56:16.406+0000] {standard_task_runner.py:72} INFO - Started process 14528 to run task
+[2026-03-26T16:56:16.409+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'etl_WINDSCAN_dag', 'load_branch.transfer_predictions_to_postgres', 'manual__2026-03-26T16:56:04.918585+00:00', '--job-id', '95', '--raw', '--subdir', 'DAGS_FOLDER/etl_windscan_dag_with_api.py', '--cfg-path', '/tmp/tmp6zdtuy9p']
+[2026-03-26T16:56:16.418+0000] {standard_task_runner.py:105} INFO - Job 95: Subtask load_branch.transfer_predictions_to_postgres
+[2026-03-26T16:56:16.479+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_WINDSCAN_dag.load_branch.transfer_predictions_to_postgres manual__2026-03-26T16:56:04.918585+00:00 [running]> on host 467f5dfd2d61
+[2026-03-26T16:56:16.529+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Julien' AIRFLOW_CTX_DAG_ID='etl_WINDSCAN_dag' AIRFLOW_CTX_TASK_ID='load_branch.transfer_predictions_to_postgres' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T16:56:04.918585+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-26T16:56:04.918585+00:00'
+[2026-03-26T16:56:16.530+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-26T16:56:16.537+0000] {s3.py:1461} INFO - Downloading source S3 file from Bucket projet-final-dsl-ft37-julien-charlier with path data_prod/20260326-165611_windscan_predictions.csv
+[2026-03-26T16:56:16.542+0000] {base.py:84} INFO - Retrieving connection 'aws_default'
+[2026-03-26T16:56:16.542+0000] {connection_wrapper.py:325} INFO - AWS Connection (conn_id='aws_default', conn_type='aws') credentials retrieved from login and password.
+[2026-03-26T16:56:17.207+0000] {base.py:84} INFO - Retrieving connection 'postgres_default'
+[2026-03-26T16:56:21.506+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-26T16:56:21.511+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_WINDSCAN_dag, task_id=load_branch.transfer_predictions_to_postgres, run_id=manual__2026-03-26T16:56:04.918585+00:00, execution_date=20260326T165604, start_date=20260326T165616, end_date=20260326T165621
+[2026-03-26T16:56:21.536+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-26T16:56:21.559+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T16:56:21.560+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

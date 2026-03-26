@@ -1,0 +1,26 @@
+[2026-03-26T16:10:07.594+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-26T16:10:07.601+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.predict_with_model_ibm manual__2026-03-26T16:10:02.464222+00:00 [queued]>
+[2026-03-26T16:10:07.604+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.predict_with_model_ibm manual__2026-03-26T16:10:02.464222+00:00 [queued]>
+[2026-03-26T16:10:07.606+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2026-03-26T16:10:07.610+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): predict_with_model_ibm> on 2026-03-26 16:10:02.464222+00:00
+[2026-03-26T16:10:07.615+0000] {standard_task_runner.py:72} INFO - Started process 12653 to run task
+[2026-03-26T16:10:07.618+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'etl_WINDSCAN_dag', 'predict_with_model_ibm', 'manual__2026-03-26T16:10:02.464222+00:00', '--job-id', '55', '--raw', '--subdir', 'DAGS_FOLDER/etl_windscan_dag_with_api.py', '--cfg-path', '/tmp/tmpvzv0xns8']
+[2026-03-26T16:10:07.623+0000] {standard_task_runner.py:105} INFO - Job 55: Subtask predict_with_model_ibm
+[2026-03-26T16:10:07.659+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_WINDSCAN_dag.predict_with_model_ibm manual__2026-03-26T16:10:02.464222+00:00 [running]> on host 467f5dfd2d61
+[2026-03-26T16:10:07.692+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Julien' AIRFLOW_CTX_DAG_ID='etl_WINDSCAN_dag' AIRFLOW_CTX_TASK_ID='predict_with_model_ibm' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T16:10:02.464222+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-26T16:10:02.464222+00:00'
+[2026-03-26T16:10:07.693+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-26T16:10:07.719+0000] {s3.py:1461} INFO - Downloading source S3 file from Bucket projet-final-dsl-ft37-julien-charlier with path data/sample_20260326-161006.csv
+[2026-03-26T16:10:07.723+0000] {base.py:84} INFO - Retrieving connection 'aws_default'
+[2026-03-26T16:10:07.723+0000] {connection_wrapper.py:325} INFO - AWS Connection (conn_id='aws_default', conn_type='aws') credentials retrieved from login and password.
+[2026-03-26T16:10:08.266+0000] {logging_mixin.py:190} INFO - [INFO] Downloaded raw batch: s3://projet-final-dsl-ft37-julien-charlier/data/sample_20260326-161006.csv -> /tmp/***_tmp_iy4lf8ej
+[2026-03-26T16:10:08.277+0000] {logging_mixin.py:190} INFO - [INFO] Features dataframe prepared: shape=(1, 11)
+[2026-03-26T16:10:08.354+0000] {logging_mixin.py:190} INFO - [ERROR] Prediction failed for row 0: HTTPSConnectionPool(host='atomik31-model-serv-api.hf.spacehttps', port=443): Max retries exceeded with url: /atomik31-model-serv-api.hf.space/predict (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0xffff7f06fa00>: Failed to resolve 'atomik31-model-serv-api.hf.spacehttps' ([Errno -2] Name or service not known)"))
+[2026-03-26T16:10:08.968+0000] {hook.py:208} WARNING - Data lineage tracking is disabled. Register a hook lineage reader to start tracking hook lineage.
+[2026-03-26T16:10:08.970+0000] {hook.py:208} WARNING - Data lineage tracking is disabled. Register a hook lineage reader to start tracking hook lineage.
+[2026-03-26T16:10:09.030+0000] {logging_mixin.py:190} INFO - [INFO] Predictions saved: s3://projet-final-dsl-ft37-julien-charlier/data_prod/20260326-161008_windscan_predictions.csv (rows=1)
+[2026-03-26T16:10:09.045+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-26T16:10:09.071+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-26T16:10:09.072+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_WINDSCAN_dag, task_id=predict_with_model_ibm, run_id=manual__2026-03-26T16:10:02.464222+00:00, execution_date=20260326T161002, start_date=20260326T161007, end_date=20260326T161009
+[2026-03-26T16:10:09.109+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-26T16:10:09.174+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T16:10:09.176+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

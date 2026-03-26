@@ -1,0 +1,29 @@
+[2026-03-26T16:19:29.263+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-26T16:19:29.271+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.predict_with_model_ibm manual__2026-03-26T16:19:23.090033+00:00 [queued]>
+[2026-03-26T16:19:29.275+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.predict_with_model_ibm manual__2026-03-26T16:19:23.090033+00:00 [queued]>
+[2026-03-26T16:19:29.275+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2026-03-26T16:19:29.279+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): predict_with_model_ibm> on 2026-03-26 16:19:23.090033+00:00
+[2026-03-26T16:19:29.283+0000] {standard_task_runner.py:72} INFO - Started process 13082 to run task
+[2026-03-26T16:19:29.286+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'etl_WINDSCAN_dag', 'predict_with_model_ibm', 'manual__2026-03-26T16:19:23.090033+00:00', '--job-id', '71', '--raw', '--subdir', 'DAGS_FOLDER/etl_windscan_dag_with_api.py', '--cfg-path', '/tmp/tmp1ylctqp4']
+[2026-03-26T16:19:29.289+0000] {standard_task_runner.py:105} INFO - Job 71: Subtask predict_with_model_ibm
+[2026-03-26T16:19:29.323+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_WINDSCAN_dag.predict_with_model_ibm manual__2026-03-26T16:19:23.090033+00:00 [running]> on host 467f5dfd2d61
+[2026-03-26T16:19:29.360+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Julien' AIRFLOW_CTX_DAG_ID='etl_WINDSCAN_dag' AIRFLOW_CTX_TASK_ID='predict_with_model_ibm' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T16:19:23.090033+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-26T16:19:23.090033+00:00'
+[2026-03-26T16:19:29.361+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-26T16:19:29.389+0000] {s3.py:1461} INFO - Downloading source S3 file from Bucket projet-final-dsl-ft37-julien-charlier with path data/sample_20260326-161926.csv
+[2026-03-26T16:19:29.394+0000] {base.py:84} INFO - Retrieving connection 'aws_default'
+[2026-03-26T16:19:29.394+0000] {connection_wrapper.py:325} INFO - AWS Connection (conn_id='aws_default', conn_type='aws') credentials retrieved from login and password.
+[2026-03-26T16:19:30.124+0000] {logging_mixin.py:190} INFO - [INFO] Downloaded raw batch: s3://projet-final-dsl-ft37-julien-charlier/data/sample_20260326-161926.csv -> /tmp/***_tmp_wnm_lzkn
+[2026-03-26T16:19:30.138+0000] {logging_mixin.py:190} INFO - [INFO] Features dataframe prepared: shape=(1, 11)
+[2026-03-26T16:19:30.139+0000] {logging_mixin.py:190} INFO - [DEBUG] Row 0 payload: {'Hour_Index': 6757.0, 'Turbine_ID': 1.0, 'Rotor_Speed_RPM': 14.1151008049, 'Wind_Speed_mps': 6.7983824155, 'Power_Output_kW': 1550.0064723838, 'Gearbox_Oil_Temp_C': 59.4709294845, 'Generator_Bearing_Temp_C': 70.9090647076, 'Vibration_Level_mmps': 2.3161156127, 'Ambient_Temp_C': 17.9428167359, 'Humidity_pct': 71.9126624938, 'Maintenance_Label': 0.0}
+[2026-03-26T16:19:30.495+0000] {logging_mixin.py:190} INFO - [ERROR] Prediction failed for row 0: 503 Server Error: Service Unavailable for url: https://atomik31-model-serv-api.hf.space/predict
+[2026-03-26T16:19:30.495+0000] {logging_mixin.py:190} INFO - [DEBUG] Response status: 503
+[2026-03-26T16:19:30.496+0000] {logging_mixin.py:190} INFO - [DEBUG] Response text: {"detail":"Model is still loading or failed to load."}
+[2026-03-26T16:19:31.042+0000] {hook.py:208} WARNING - Data lineage tracking is disabled. Register a hook lineage reader to start tracking hook lineage.
+[2026-03-26T16:19:31.042+0000] {hook.py:208} WARNING - Data lineage tracking is disabled. Register a hook lineage reader to start tracking hook lineage.
+[2026-03-26T16:19:31.059+0000] {logging_mixin.py:190} INFO - [INFO] Predictions saved: s3://projet-final-dsl-ft37-julien-charlier/data_prod/20260326-161930_windscan_predictions.csv (rows=1)
+[2026-03-26T16:19:31.062+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-26T16:19:31.068+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-26T16:19:31.069+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_WINDSCAN_dag, task_id=predict_with_model_ibm, run_id=manual__2026-03-26T16:19:23.090033+00:00, execution_date=20260326T161923, start_date=20260326T161929, end_date=20260326T161931
+[2026-03-26T16:19:31.106+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-26T16:19:31.124+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T16:19:31.125+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

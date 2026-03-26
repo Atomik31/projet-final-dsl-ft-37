@@ -1,0 +1,8 @@
+apache-airflow-providers-postgres
+apache-airflow-providers-amazon
+psycopg[binary]
+pandas
+mlflow==2.21.3
+scikit-learn==1.4.2
+boto3
+openpyxl

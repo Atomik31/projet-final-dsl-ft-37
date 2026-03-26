@@ -1,0 +1,123 @@
+[2026-03-26T14:28:00.285+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-26T14:28:00.387+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.extract_raw_employees_batch manual__2026-03-26T14:27:58.462629+00:00 [queued]>
+[2026-03-26T14:28:00.409+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_WINDSCAN_dag.extract_raw_employees_batch manual__2026-03-26T14:27:58.462629+00:00 [queued]>
+[2026-03-26T14:28:00.410+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2026-03-26T14:28:00.460+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): extract_raw_employees_batch> on 2026-03-26 14:27:58.462629+00:00
+[2026-03-26T14:28:00.518+0000] {standard_task_runner.py:72} INFO - Started process 8865 to run task
+[2026-03-26T14:28:00.600+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'etl_WINDSCAN_dag', 'extract_raw_employees_batch', 'manual__2026-03-26T14:27:58.462629+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/etl_attrition_dag_with_api.py', '--cfg-path', '/tmp/tmpke5fygzy']
+[2026-03-26T14:28:00.627+0000] {standard_task_runner.py:105} INFO - Job 30: Subtask extract_raw_employees_batch
+[2026-03-26T14:28:00.853+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_WINDSCAN_dag.extract_raw_employees_batch manual__2026-03-26T14:27:58.462629+00:00 [running]> on host 467f5dfd2d61
+[2026-03-26T14:28:01.041+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Julien' AIRFLOW_CTX_DAG_ID='etl_WINDSCAN_dag' AIRFLOW_CTX_TASK_ID='extract_raw_employees_batch' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T14:27:58.462629+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-26T14:27:58.462629+00:00'
+[2026-03-26T14:28:01.046+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-26T14:28:01.108+0000] {s3.py:1461} INFO - Downloading source S3 file from Bucket projet-final-dsl-ft37-julien-charlier with path data/data
+[2026-03-26T14:28:01.116+0000] {base.py:84} INFO - Retrieving connection 'aws_default'
+[2026-03-26T14:28:01.116+0000] {connection_wrapper.py:325} INFO - AWS Connection (conn_id='aws_default', conn_type='aws') credentials retrieved from login and password.
+[2026-03-26T14:28:01.826+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/dags/tasks_with_api/extract_ibm.py", line 23, in extract_employees_batch_to_s3
+    s3_hook.download_file(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 152, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 125, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 1471, in download_file
+    raise e
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 1464, in download_file
+    s3_obj = self.get_key(key, bucket_name)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 152, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 125, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 984, in get_key
+    obj.load(**sanitize_extra_args())
+  File "/home/airflow/.local/lib/python3.10/site-packages/boto3/resources/factory.py", line 565, in do_action
+    response = action(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/boto3/resources/action.py", line 88, in __call__
+    response = getattr(parent.meta.client, operation_name)(*args, **params)
+  File "/home/airflow/.local/lib/python3.10/site-packages/botocore/client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/botocore/client.py", line 1023, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (404) when calling the HeadObject operation: Not Found
+[2026-03-26T14:28:01.841+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_WINDSCAN_dag, task_id=extract_raw_employees_batch, run_id=manual__2026-03-26T14:27:58.462629+00:00, execution_date=20260326T142758, start_date=20260326T142800, end_date=20260326T142801
+[2026-03-26T14:28:01.868+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-26T14:28:01.869+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 30 for task extract_raw_employees_batch (An error occurred (404) when calling the HeadObject operation: Not Found; 8865)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/dags/tasks_with_api/extract_ibm.py", line 23, in extract_employees_batch_to_s3
+    s3_hook.download_file(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 152, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 125, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 1471, in download_file
+    raise e
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 1464, in download_file
+    s3_obj = self.get_key(key, bucket_name)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 152, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 125, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 984, in get_key
+    obj.load(**sanitize_extra_args())
+  File "/home/airflow/.local/lib/python3.10/site-packages/boto3/resources/factory.py", line 565, in do_action
+    response = action(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/boto3/resources/action.py", line 88, in __call__
+    response = getattr(parent.meta.client, operation_name)(*args, **params)
+  File "/home/airflow/.local/lib/python3.10/site-packages/botocore/client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/botocore/client.py", line 1023, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (404) when calling the HeadObject operation: Not Found
+[2026-03-26T14:28:01.889+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-03-26T14:28:01.932+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T14:28:01.934+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
